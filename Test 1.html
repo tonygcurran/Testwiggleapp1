@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wiggle</title>
+<style>
+html,body{margin:0;height:100%;background:#EFEDE4;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center;
+  transition:background .25s ease}
+body.full{background:#000}
+canvas{display:block;cursor:pointer;box-shadow:0 10px 40px rgba(0,0,0,.15)}
+body.full canvas{box-shadow:none}
+</style></head><body><script>
+var BRI=100;
+var STATE={"title":"Wiggle","cmW":60,"cmH":60,"layers":[{"hue":60,"blend":"source-over","show":true,"ground":{"opacity":0.1,"opDrift":1,"opSpeed":0.1,"seed":13,"show":true},"wiggles":[{"id":2,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":0.1,"ty":-0.15,"rot":-48,"scale":0.78,"satDrift":0.5,"satSpeed":1,"wDrift":1,"wSpeed":0.3,"drift":0.3,"speed":0.4,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.2359,"y":0.8185},{"x":0.3146,"y":0.5573},{"x":0.5201,"y":0.6527},{"x":0.6442,"y":0.5925},{"x":0.4468,"y":1.1695},{"x":0.6891,"y":1.0679},{"x":0.9202,"y":0.6425},{"x":0.6684,"y":0.9163}]},{"id":3,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":-0.13,"ty":-0.21,"rot":-3,"scale":1,"satDrift":0.49,"satSpeed":0.3,"wDrift":1,"wSpeed":0.35,"drift":0,"speed":0.95,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.25,"y":0.6218},{"x":0.4047,"y":0.6523},{"x":0.2125,"y":0.5194},{"x":0.4911,"y":0.4971},{"x":0.3943,"y":0.3089},{"x":0.7463,"y":0.6046}]},{"id":4,"sat":82,"w":1.03,"wBase":0.09,"tight":0,"tx":0.4,"ty":-0.38,"rot":72,"scale":0.44,"satDrift":0.44,"satSpeed":0.4,"wDrift":0.15,"wSpeed":0.55,"drift":0.3,"speed":1,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.2897,"y":0.7496},{"x":0.1172,"y":0.6497},{"x":0.4659,"y":0.3584},{"x":0.3513,"y":0.5116},{"x":0.5912,"y":0.4193},{"x":0.4867,"y":0.7289},{"x":0.7451,"y":0.6453}]},{"id":5,"sat":97,"w":0.41,"wBase":0.09,"tight":0,"tx":0,"ty":0,"rot":0,"scale":0.66,"satDrift":0.77,"satSpeed":1,"wDrift":0.4,"wSpeed":0.3,"drift":0.46,"speed":1,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.0858,"y":0.9347},{"x":0.3381,"y":0.9604},{"x":0.0852,"y":0.712},{"x":0.3023,"y":0.5376},{"x":0.4276,"y":0.4222}]}]},{"hue":84,"blend":"multiply","show":true,"ground":{"opacity":0.1,"opDrift":1,"opSpeed":0.1,"seed":78,"show":true},"wiggles":[{"id":7,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":-0.06,"ty":0.045,"rot":8,"scale":0.81,"satDrift":1,"satSpeed":0.15,"wDrift":0.28,"wSpeed":0.3,"drift":0.18,"speed":1,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.3449,"y":0.8467},{"x":0.1956,"y":0.8773},{"x":0.3209,"y":0.8093},{"x":0.1182,"y":0.6199},{"x":0.836,"y":0.8289},{"x":0.1799,"y":0.3644},{"x":0.7718,"y":0.5891},{"x":0.2997,"y":0.562},{"x":0.5285,"y":0.2513},{"x":0.2914,"y":0.2299}]},{"id":8,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":0.175,"ty":-0.29,"rot":38,"scale":0.71,"satDrift":0.98,"satSpeed":0.45,"wDrift":0.2,"wSpeed":0.35,"drift":0.25,"speed":0.25,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.267,"y":0.6232},{"x":0.0916,"y":0.721},{"x":0.4758,"y":0.3561},{"x":-0.2429,"y":0.8327},{"x":-0.278,"y":0.7954},{"x":0.5426,"y":0.1994},{"x":0.6306,"y":0.2854},{"x":0.5449,"y":0.5822},{"x":0.8824,"y":0.4607},{"x":0.4758,"y":0.7859},{"x":1.0714,"y":0.7493},{"x":1.0976,"y":1.1381}]}]},{"hue":0,"blend":"multiply","show":true,"ground":{"opacity":0.1,"opDrift":1,"opSpeed":0.55,"seed":117,"show":true},"wiggles":[{"id":10,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":-0.125,"ty":0.285,"rot":-125,"scale":0.84,"satDrift":0.2,"satSpeed":0.15,"wDrift":0,"wSpeed":1,"drift":0.2,"speed":0.75,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.7249,"y":0.0124},{"x":0.6212,"y":0.2941},{"x":0.6328,"y":0.3708},{"x":0.2263,"y":0.7502},{"x":0.7317,"y":0.4367},{"x":0.8561,"y":0.0581},{"x":0.8494,"y":0.4893},{"x":0.3725,"y":0.8628},{"x":0.5899,"y":0.8357}]},{"id":11,"sat":50,"w":1,"wBase":0.09,"tight":-0.36,"tx":0.215,"ty":-0.175,"rot":0,"scale":0.87,"satDrift":0.6,"satSpeed":0.15,"wDrift":0.24,"wSpeed":1,"drift":0.34,"speed":0.25,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.33,"pts":[{"x":0.6691,"y":0.6551},{"x":0.1848,"y":0.6564},{"x":-0.1616,"y":0.6101},{"x":0.4564,"y":0.4822},{"x":-0.1366,"y":0.3406},{"x":0.6916,"y":0.3697},{"x":0.5077,"y":0.2385}]},{"id":12,"sat":50,"w":1.88,"wBase":0.09,"tight":-0.36,"tx":0.34,"ty":-0.24,"rot":154,"scale":0.25,"satDrift":0.39,"satSpeed":0.85,"wDrift":0.7,"wSpeed":0.35,"drift":0.15,"speed":0.6,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.3951,"y":0.6887},{"x":0.6315,"y":0.6369},{"x":0.4893,"y":0.4164},{"x":0.7875,"y":0.6617},{"x":0.4192,"y":0.5011}]}]},{"hue":240,"blend":"multiply","show":true,"ground":{"opacity":0.1,"opDrift":1,"opSpeed":0.1,"seed":182,"show":true},"wiggles":[{"id":14,"sat":50,"w":1,"wBase":0.09,"tight":-0.48,"tx":-0.06,"ty":0,"rot":-93,"scale":1,"satDrift":0.59,"satSpeed":0.05,"wDrift":0.28,"wSpeed":0.1,"drift":0.25,"speed":0.3,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.2252,"y":0.9029},{"x":0.4302,"y":0.8663},{"x":0.964,"y":0.8512},{"x":0.2991,"y":0.4127},{"x":0.6503,"y":0.574},{"x":0.3535,"y":0.1729},{"x":0.9462,"y":0.5535},{"x":0.9979,"y":0.1373}]},{"id":15,"sat":50,"w":0.32,"wBase":0.09,"tight":-0.8,"tx":0,"ty":-0.035,"rot":7,"scale":0.87,"satDrift":0.43,"satSpeed":0.05,"wDrift":0.38,"wSpeed":0.1,"drift":0.12,"speed":0.3,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.0588,"y":0.6595},{"x":0.213,"y":0.3645},{"x":0.3922,"y":0.2415},{"x":0.2719,"y":0.432},{"x":0.172,"y":0.5419},{"x":0.0811,"y":0.8209}]},{"id":16,"sat":50,"w":0.53,"wBase":0.09,"tight":-0.51,"tx":0,"ty":0,"rot":0,"scale":1,"satDrift":1,"satSpeed":0.05,"wDrift":0.99,"wSpeed":0.3,"drift":0.33,"speed":0.3,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.6248,"y":0.8922},{"x":0.6862,"y":0.6777},{"x":0.7389,"y":0.4697},{"x":0.7112,"y":0.6863},{"x":0.7576,"y":0.9118}]},{"id":17,"sat":50,"w":1,"wBase":0.09,"tight":0,"tx":0,"ty":0,"rot":0,"scale":1,"satDrift":0.6,"satSpeed":0.05,"wDrift":0.23,"wSpeed":0.3,"drift":0.18,"speed":0.3,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.6693,"y":0.1319},{"x":0.7567,"y":0.0766},{"x":0.9011,"y":0.1061}]}]},{"hue":300,"blend":"multiply","show":true,"ground":{"opacity":0.1,"opDrift":1,"opSpeed":0.1,"seed":221,"show":true},"wiggles":[{"id":19,"sat":100,"w":0.62,"wBase":0.09,"tight":-0.74,"tx":-0.15,"ty":-0.165,"rot":0,"scale":1,"satDrift":1,"satSpeed":0.5,"wDrift":0.68,"wSpeed":0.3,"drift":0.53,"speed":0.35,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.3021,"y":1.049},{"x":0.3217,"y":0.6551},{"x":0.2968,"y":0.4572},{"x":0.3004,"y":0.336},{"x":0.4349,"y":0.5517},{"x":0.5882,"y":0.2397},{"x":0.5784,"y":0.5713},{"x":0.7861,"y":0.9955},{"x":0.7638,"y":0.541}]},{"id":20,"sat":50,"w":1,"wBase":0.09,"tight":0.02,"tx":0,"ty":0,"rot":0,"scale":1,"satDrift":0.49,"satSpeed":0.4,"wDrift":0.12,"wSpeed":1,"drift":0.56,"speed":0.3,"show":true,"brush":false,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.8859,"y":0.0847},{"x":0.795,"y":0.3761},{"x":0.8806,"y":0.9055}]}]},{"hue":180,"blend":"multiply","show":true,"ground":{"opacity":0.14,"opDrift":1,"opSpeed":0.1,"seed":273,"show":true},"wiggles":[{"id":22,"sat":50,"w":1.2,"wBase":0.09,"tight":-0.84,"tx":0,"ty":0,"rot":0,"scale":0.95,"satDrift":1,"satSpeed":0.05,"wDrift":0.28,"wSpeed":0.15,"drift":0.33,"speed":0.3,"show":true,"brush":true,"load":0.35,"swell":0.25,"bite":0.3,"pts":[{"x":0.0918,"y":0.4118},{"x":0.4439,"y":0.2193},{"x":0.139,"y":0.0998},{"x":0.2772,"y":0.5294},{"x":0.8512,"y":0.1373},{"x":0.311,"y":0.8013},{"x":0.82,"y":0.352},{"x":0.615,"y":0.7424},{"x":0.7148,"y":0.8583},{"x":0.8886,"y":0.6185}]}]}]};
+var layers=STATE.layers;
+var W=0,H=0,R=0,DPR=1,t=0,raf=null;
+var cv=document.createElement("canvas"); document.body.appendChild(cv);
+var ctx=cv.getContext("2d");
+var sheetC=document.createElement("canvas"), sheet=sheetC.getContext("2d");
+var bufC=document.createElement("canvas"), buf=bufC.getContext("2d");
+function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+function lerp(a,b,u){ return a+(b-a)*u; }
+function hash2(x,y){ var n=Math.sin(x*127.1+y*311.7)*43758.5453; return n-Math.floor(n); }
+function noise2(x,y){
+  y = y || 0;
+  var xi=Math.floor(x), yi=Math.floor(y), xf=x-xi, yf=y-yi;
+  var sx=xf*xf*(3-2*xf), sy=yf*yf*(3-2*yf);
+  return lerp(lerp(hash2(xi,yi),hash2(xi+1,yi),sx),
+              lerp(hash2(xi,yi+1),hash2(xi+1,yi+1),sx), sy);
+}
+function hsv(h,s,v){
+  h=((h%360)+360)%360; s=s/100; v=v/100;
+  var c=v*s, x=c*(1-Math.abs((h/60)%2-1)), m=v-c, r=0,g=0,b=0;
+  if(h<60){r=c;g=x;} else if(h<120){r=x;g=c;} else if(h<180){g=c;b=x;}
+  else if(h<240){g=x;b=c;} else if(h<300){r=x;b=c;} else {r=c;b=x;}
+  return 'rgb('+Math.round((r+m)*255)+','+Math.round((g+m)*255)+','+Math.round((b+m)*255)+')';
+}
+function catmull(p0,p1,p2,p3,u,s){
+  var f=(1-s)/2;
+  var m1x=f*(p2.x-p0.x), m1y=f*(p2.y-p0.y), m2x=f*(p3.x-p1.x), m2y=f*(p3.y-p1.y);
+  var u2=u*u, u3=u2*u;
+  var h00=2*u3-3*u2+1, h10=u3-2*u2+u, h01=-2*u3+3*u2, h11=u3-u2;
+  return { x:h00*p1.x+h10*m1x+h01*p2.x+h11*m2x, y:h00*p1.y+h10*m1y+h01*p2.y+h11*m2y };
+}
+function tracePath(x, pts, s){
+  var pad=[pts[0]].concat(pts,[pts[pts.length-1]]), f=(1-s)/2;
+  x.beginPath();
+  x.moveTo(pad[1].x*W, pad[1].y*H);
+  for (var i=0;i<pad.length-3;i++){
+    var p0=pad[i],p1=pad[i+1],p2=pad[i+2],p3=pad[i+3];
+    x.bezierCurveTo(
+      (p1.x+f*(p2.x-p0.x)/3)*W, (p1.y+f*(p2.y-p0.y)/3)*H,
+      (p2.x-f*(p3.x-p1.x)/3)*W, (p2.y-f*(p3.y-p1.y)/3)*H,
+      p2.x*W, p2.y*H);
+  }
+}
+function shift(pt,i,w){
+  if (!w.drift) return pt;
+  var s=w.id*37, u=t*(w.speed||1);
+  return { x: pt.x+(noise2(s+i,u)-0.5)*0.22*w.drift,
+           y: pt.y+(noise2(s+i+99,u)-0.5)*0.22*w.drift };
+}
+function centre(w){
+  var sx=0, sy=0;
+  for (var i=0;i<w.pts.length;i++){ sx+=w.pts[i].x; sy+=w.pts[i].y; }
+  return { x:sx/w.pts.length, y:sy/w.pts.length };
+}
+function place(p,w,c){
+  if (!w.rot && w.scale===1 && !w.tx && !w.ty) return p;
+  var px=(p.x-c.x)*W, py=(p.y-c.y)*H;
+  var a=w.rot*Math.PI/180, cs=Math.cos(a), sn=Math.sin(a), k=w.scale;
+  return { x: c.x + (px*cs-py*sn)*k/W + w.tx,
+           y: c.y + (px*sn+py*cs)*k/H + w.ty };
+}
+function viewPts(w){
+  var c=centre(w);
+  return w.pts.map(function(p,i){ return place(shift(p,i,w),w,c); });
+}
+function effSat(w){
+  if (!w.satDrift) return w.sat;
+  var n = noise2(w.id*53+7, t*(w.satSpeed||1));
+  return clamp(w.sat + (n-0.5)*200*w.satDrift, 0, 100);
+}
+function effW(w){
+  if (!w.wDrift) return w.w;
+  var n = noise2(w.id*97+19, t*(w.wSpeed||1));
+  return Math.max(0.01, w.w * (1 + (n-0.5)*2*w.wDrift));
+}
+function effOp(g){
+  if (!g.opDrift) return g.opacity;
+  var n = noise2((g.seed||11)+31, t*(g.opSpeed||1));
+  return clamp(g.opacity + (n-0.5)*2*g.opDrift, 0, 1);
+}
+function lineStroke(pts,w,hue){
+  sheet.strokeStyle=hsv(hue,effSat(w),BRI);
+  sheet.lineWidth=w.wBase*R*effW(w)*w.scale;
+  sheet.lineCap='round'; sheet.lineJoin='round';
+  tracePath(sheet,pts,w.tight);
+  sheet.stroke();
+}
+function brushStroke(pts,w,hue){
+  var pad=[pts[0]].concat(pts,[pts[pts.length-1]]);
+  var base=w.wBase*R*effW(w)*w.scale, segs=pad.length-3, steps=40, i, k;
+  var s=[];
+  for (i=0;i<segs;i++)
+    for (k=(i===0?0:1);k<=steps;k++)
+      s.push(catmull(pad[i],pad[i+1],pad[i+2],pad[i+3],k/steps,w.tight));
+  var n=s.length, curv=[];
+  for (i=0;i<n;i++){
+    if (i===0||i===n-1){ curv.push(0); continue; }
+    var a=s[i-1], b=s[i+1], q=s[i];
+    var v1x=(q.x-a.x)*W/R, v1y=(q.y-a.y)*H/R, v2x=(b.x-q.x)*W/R, v2y=(b.y-q.y)*H/R;
+    var l1=Math.sqrt(v1x*v1x+v1y*v1y), l2=Math.sqrt(v2x*v2x+v2y*v2y);
+    if (l1<1e-9||l2<1e-9){ curv.push(0); continue; }
+    var cr=(v1x*v2y-v1y*v2x)/(l1*l2), dt=(v1x*v2x+v1y*v2y)/(l1*l2);
+    curv.push(Math.abs(Math.atan2(cr,dt))/((l1+l2)/2));
+  }
+  buf.globalCompositeOperation='source-over';
+  buf.globalAlpha=1;
+  buf.clearRect(0,0,W,H);
+  buf.fillStyle=hsv(hue,effSat(w),BRI);
+  for (i=0;i<n;i++){
+    var g=i/(n-1);
+    var load=1+w.load*(0.5-g)*1.6;
+    var sw=1+w.swell*(noise2(w.id*11+g*7)-0.5)*2.4;
+    var bite=1-w.bite*Math.min(1,curv[i]/24);
+    var d=base*Math.max(0.04, load*sw*bite);
+    buf.beginPath();
+    buf.arc(s[i].x*W, s[i].y*H, d/2, 0, Math.PI*2);
+    buf.fill();
+  }
+  sheet.drawImage(bufC,0,0,W,H);
+}
+var full=false;
+function fit(){
+  /* fullscreen fills the screen edge to edge; windowed leaves a margin */
+  var k = Math.min(innerWidth/STATE.cmW, innerHeight/STATE.cmH);
+  if (!full) k *= 0.92;            /* windowed leaves a little air */
+  W=Math.max(80,Math.round(STATE.cmW*k)); H=Math.max(80,Math.round(STATE.cmH*k));
+  R=Math.min(W,H); DPR=Math.min(2, window.devicePixelRatio||1);
+  [[cv,ctx],[sheetC,sheet],[bufC,buf]].forEach(function(p){
+    p[0].width=W*DPR; p[0].height=H*DPR;
+    p[0].style.width=W+"px"; p[0].style.height=H+"px";
+    p[1].setTransform(DPR,0,0,DPR,0,0); });
+}
+/* Click anywhere to fill the screen, click again to come back. Real
+   fullscreen is requested where the browser allows it; iOS Safari has
+   no such API, so the black page filling the window is the fallback. */
+function isFull(){
+  return !!(document.fullscreenElement || document.webkitFullscreenElement);
+}
+function apply(){
+  document.body.className = full ? "full" : "";
+  fit(); render();
+}
+function toggle(){
+  full = !full;
+  try {
+    if (full) {
+      var e = document.documentElement;
+      if (e.requestFullscreen) e.requestFullscreen();
+      else if (e.webkitRequestFullscreen) e.webkitRequestFullscreen();
+    } else {
+      if (document.exitFullscreen && isFull()) document.exitFullscreen();
+      else if (document.webkitExitFullscreen && isFull()) document.webkitExitFullscreen();
+    }
+  } catch (err) {}
+  apply();
+}
+addEventListener("click", toggle);
+addEventListener("keydown", function(e){
+  if (e.key === "Escape" && full) { full=false; apply(); }
+  if (e.key === "f" || e.key === "Enter") toggle();
+});
+/* leaving fullscreen by Escape or a system gesture must match up */
+document.addEventListener("fullscreenchange", function(){
+  if (!isFull() && full) { full=false; apply(); }
+});
+document.addEventListener("webkitfullscreenchange", function(){
+  if (!isFull() && full) { full=false; apply(); }
+});
+function render(){
+  ctx.globalCompositeOperation="source-over"; ctx.globalAlpha=1;
+  ctx.fillStyle="#ffffff"; ctx.fillRect(0,0,W,H);
+  for (var i=0;i<layers.length;i++){ var l=layers[i]; if(!l.show) continue;
+    sheet.globalCompositeOperation="source-over"; sheet.globalAlpha=1;
+    sheet.clearRect(0,0,W,H);
+    if (l.ground.show){ sheet.globalAlpha=effOp(l.ground);
+      sheet.fillStyle=hsv(l.hue,100,BRI); sheet.fillRect(0,0,W,H); sheet.globalAlpha=1; }
+    for (var j=0;j<l.wiggles.length;j++){ var w=l.wiggles[j]; if(!w.show) continue;
+      var pts=viewPts(w);
+      if (w.brush) brushStroke(pts,w,l.hue); else lineStroke(pts,w,l.hue); }
+    ctx.globalCompositeOperation=l.blend; ctx.drawImage(sheetC,0,0,W,H); }
+  ctx.globalCompositeOperation="source-over";
+}
+var moves=layers.some(function(l){ if(!l.show) return false;
+  if (l.ground.show && l.ground.opDrift>0) return true;
+  return l.wiggles.some(function(w){
+    return w.show && (w.drift>0||w.satDrift>0||w.wDrift>0); }); }) &&
+  !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+function tick(){ t+=0.012; render(); raf=requestAnimationFrame(tick); }
+addEventListener("resize", function(){ fit(); render(); });
+document.body.className="";
+fit(); render();
+if (moves) raf=requestAnimationFrame(tick);
+</script></body></html>
